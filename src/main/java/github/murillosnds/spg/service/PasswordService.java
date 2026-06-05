@@ -12,6 +12,13 @@ import java.util.List;
 public class PasswordService {
 
     public String generatePassword(int length) {
+
+        if (length < 12 || length > 256) {
+            throw new IllegalArgumentException(
+                "The size must be between 12 and 256"
+            );
+        }
+
         PasswordGenerator gen = new PasswordGenerator();
 
         CharacterRule lowercase = new CharacterRule(EnglishCharacterData.LowerCase, 2);

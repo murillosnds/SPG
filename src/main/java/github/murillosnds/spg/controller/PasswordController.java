@@ -2,6 +2,7 @@ package github.murillosnds.spg.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import github.murillosnds.spg.dto.PasswordResponse;
 import github.murillosnds.spg.service.PasswordService;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,7 +16,10 @@ public class PasswordController {
     }
 
     @GetMapping("/api/password")
-    public String generatePassword(@RequestParam(defaultValue = "12") int length) {
-        return passwordService.generatePassword(length);
-    }
+   public PasswordResponse generatePassword(@RequestParam(defaultValue = "12") int length) {
+
+    String password = passwordService.generatePassword(length);
+
+    return new PasswordResponse(password, length);
+   }        
 }
