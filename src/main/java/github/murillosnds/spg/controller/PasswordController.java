@@ -16,10 +16,9 @@ public class PasswordController {
     }
 
     @GetMapping("/api/password")
-   public PasswordResponse generatePassword(@RequestParam(defaultValue = "12") int length) {
+    public PasswordResponse generatePassword(@RequestParam(defaultValue = "12") int length) {
+        String password = passwordService.generatePassword(length);
+        return new PasswordResponse(password, length);
+    }
 
-    String password = passwordService.generatePassword(length);
-
-    return new PasswordResponse(password, length);
-   }        
 }
